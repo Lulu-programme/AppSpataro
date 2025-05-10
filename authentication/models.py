@@ -9,7 +9,7 @@ class Truck(models.Model):
     maintenance = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     adr = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
-    delete = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.license
@@ -24,7 +24,7 @@ class Account(AbstractUser):
     phone = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     sector = models.CharField(max_length=50, blank=True, null=True)
-    delete = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.get_full_name()

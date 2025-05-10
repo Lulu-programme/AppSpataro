@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="nav-content">
+    <a href="{% url 'profile' %}"><img src="{% static 'images/icons/return.png' %}" class="icon"></a>
+    <h1>{{ title }}</h1>
+</div>
+
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        <li class="message {{ message.tags }}">
+            {{ message }}
+            <!-- Bouton de fermeture -->
+            <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form action="{% url 'truck' %}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Immatriculation</legend>
+        <input type='text' name='license' id='license' required>
+        <p class="required">Obligatoire</p>
+    </fieldset>
+    <fieldset>
+        <legend>Contrôle technique</legend>
+        <input type='date' name='technical' id='technical'>
+    </fieldset>
+    <fieldset>
+        <legend>Contrôle tachygraphe</legend>
+        <input type='date' name='tachograph' id='tachograph'>
+    </fieldset>
+    <fieldset>
+        <legend>Contrôle ADR</legend>
+        <input type='date' name='adr' id='adr'>
+    </fieldset>
+    <fieldset>
+        <legend>Entretient</legend>
+        <input type='date' name='maintenance' id='maintenance'>
+    </fieldset>
+    <fieldset>
+        <legend>Poids</legend>
+        <input type='number' name='weight' id='weight' min='0' value='0'>
+        <p class="helptext">À titre indicatif</p>
+    </fieldset>
+    <p class="submitted"><input type="submit" value="Ajouter"></p>
+</form>
+{% endblock content %}

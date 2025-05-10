@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        <li class="message {{ message.tags }}">
+            {{ message }}
+            <!-- Bouton de fermeture -->
+            <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<!--     -----     Les administrateurs     -----     -->
+{% if request.user.is_staff %}
+<h1>Welcome {{ name_user }}</h1>
+<!--     -----     Les chauffeurs     -----     -->
+{% else %}
+
+{% endif %}
+<script src="{% static 'js/script.js' %}"></script>
+<script>
+    // Initialisation des fonctionnalités
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log("DOM chargé !");
+
+        // Liste des produits ADR passée depuis Django
+        const products = [
+            {% for product in products %}
+            { id: "{{ product.id }}", name: "{{ product.get_name }}" },
+            {% endfor %}
+        ];
+
+        // Initialise les groupes dynamiques
+        App.initializeDynamicGroups('add-group', 'dynamic-groups', products);
+        App.initializeTabs();
+    });
+</script>
+{% endblock content %}

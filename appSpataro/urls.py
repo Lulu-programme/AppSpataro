@@ -18,9 +18,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
+import authentication.views
 
 urlpatterns = [
+    # Home section
     path('admin/', admin.site.urls),
+    path('', authentication.views.profile, name='profile'),
+    # Authentication section
+    path('login/', authentication.views.login_page, name='login'),
+    path('logout/', authentication.views.logout_user, name='logout'),
+    path('truck/', authentication.views.add_truck, name='truck'),
 ]
 
 if settings.DEBUG:

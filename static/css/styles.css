@@ -1,0 +1,141 @@
+/* ---   Configuration   --- */
+:root { 
+    --primary: #f90; 
+    --secondary: #d96; 
+    --text1: #030228;
+    --text2: #1e0b63;
+    --black: #232323;
+    --accent: #969696;
+    --backgroundTitle: #4e4e4e;
+    --border: #301199;
+    --green: #119930;
+    --red: #993011;
+    --background: #f0f0a0;
+    --successModify: #6d9;
+    --errorDelete: #d69;
+    --infoRestore: #69d;
+    --textLight: #f0f0f0;
+}
+@font-face { font-family: 'spataro'; src: url(../fonts/algerian.ttf); }
+@font-face { font-family: 'hack'; src: url(../fonts/hack.ttf); }
+@font-face { font-family: 'lcd'; src: url(../fonts/lcd.ttf); }
+@font-face { font-family: 'note'; src: url(../fonts/tomorrow.ttf); }
+@font-face { font-family: 'text'; src: url(../fonts/Ubuntu.ttf); }
+
+/* ---   Main settings   --- */
+body { background-color: var(--background); }
+*{ margin: 0; padding: 0; box-sizing: content-box; font-size: 14pt; font-family: 'text'; font-weight: normal; color: var(--text1);}
+a{ text-decoration: none; font-family: 'hack'; }
+a.mail{ color: var(--primary); }
+h1{ text-align: center; font-size: 20pt; color: var(--primary); background-color: var(--backgroundTitle); padding: 10px 30px; margin: 10px auto; border-radius: 10px; width: fit-content; }
+h2{ text-align: center; font-size: 18pt; margin: 10px; border-radius: 10px; }
+h3{ text-align: center; font-size: 16pt; margin: 10px; }
+div.container{ padding: 0 10px 10px 10px; margin-bottom: 75px; }
+div.nav-content{ display: flex; align-items: center; justify-content: center; }
+.icon{ width: 45px; padding: 5px; border-radius: 10px; vertical-align: middle; }
+.change{ width: 30px; }
+.modify .icon{ background-color: var(--successModify); cursor: text; }
+.delete .icon{ background-color: var(--errorDelete); cursor: not-allowed; }
+.restore .icon{ background-color: var(--infoRestore); cursor: wait;}
+
+/* ---   Navigation   ---*/
+div.navbar { background-color: var(--black); display: flex; flex-direction: row; justify-content: space-around; align-items: center; }
+div.logo p img { width: 100px; vertical-align: middle; padding: 10px 0; }
+div.logo p span { font-family: 'spataro'; font-size: 18pt; margin-left: 10px; color: var(--primary); }
+div.links-list { background-color: var(--accent); position: fixed; left: 0; bottom: 0; height: 75px; width: 100%; display: flex; flex-direction: row; justify-content: space-around; align-items: center; border-top: 3px solid var(--border); }
+div.links-list a span, div.btn-add a span, div.name-user a span, div.button a span { padding: 10px 20px; background-color: var(--primary); border-radius: 10px; }
+div.links-list a span:hover, div.btn-add a span:hover { background-color: var(--backgroundTitle); color: var(--primary); }
+
+/* ---   Messages   --- */
+.message { padding: 10px 30px; margin: 5px 0; border-radius: 5px; font-weight: bold; text-align: center; position: relative; list-style: none; }
+.message.success { background-color: var(--successModify); color: var(--text2); }
+.message.error { background-color: var(--errorDelete); color: var(--text2); }
+.close-btn { position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 25px; cursor: not-allowed; color: inherit; }
+
+/* ---   Table   --- */
+div.main-tab{ display: flex; flex-direction: row; gap: 20px; background-color: var(--backgroundTitle); }
+div.main-tab .btn-main{ border: none; background-color: var(--backgroundTitle); padding: 20px 20px; }
+div.main-tab .btn-main span{ color: var(--primary); }
+div.main-tab .active{ background-color: var(--primary); }
+div.main-tab .active span{ color: var(--text1); }
+
+/* ---   Content   --- */
+div.main-content{display: none; flex-direction: column;}
+div.driver, div.truck, div.factory, div.station{ display: grid; grid-template-columns: repeat(4, 1fr); }
+div.adr{ display: grid; grid-template-columns: repeat(2, 1fr); }
+div.pagination{ width: 100%; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 10px; }
+div.pagination a, div.pagination span{ padding: 10px;}
+div.pagination a{ background-color: var(--primary); border-radius: 10px; }
+div.deleted{ display: flex; flex-direction: column; }
+
+/* ---   Forms   --- */
+fieldset{ padding: 10px; width: 400px; margin: 10px auto; border-radius: 10px; border-color: var(--text2); }
+fieldset legend{ text-align: center; margin: 5px; padding: 5px 10px; background-color: var(--backgroundTitle); color: var(--primary); border-radius: 10px; }
+fieldset input{ padding: 5px; font-family: 'hack'; border: 1px solid; width: 300px; }
+fieldset div{ display: flex; flex-direction: row; justify-content: flex-start; }
+fieldset div.plan{ display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px 0;}
+fieldset div.plan div{ padding-top: 10px; }
+fieldset div.group{ display: flex; flex-direction: column; justify-content: flex-start;}
+fieldset div.group.add{ border-top: 2px solid var(--accent); margin-top: 10px;}
+fieldset div.group input{ width: fit-content; }
+fieldset div.group label{ padding: 10px;}
+fieldset div.group div label{ padding: 5px;}
+fieldset div input{ width: fit-content; }
+fieldset div label{ margin-left: 10px; }
+fieldset textarea{ padding: 5px; font-family: 'hack'; }
+div.search{background-color: var(--primary)}
+div.search form{display: flex; flex-direction: row; padding: 10px;}
+div.search form p{display: flex; flex-direction: row; width: fit-content; padding: 0 20px; align-items: center; justify-content: center;}
+div.search form p select, .search form p input{width: fit-content;}
+div.search form p select option{font-size: 11pt;}
+div.search form p label{padding-right: 20px; }
+p.helptext{ padding: 5px; font-family: 'note'; color: var(--green); font-weight: bold; }
+p.required{ padding: 5px; font-family: 'note'; color: var(--red); font-weight: bold; }
+p.submitted{ text-align: center; }
+p.submitted input{ padding: 10px 20px; background-color: var(--primary); border-radius: 10px; border: 2px solid var(--backgroundTitle); }
+p.submitted input:hover{ background-color: var(--backgroundTitle); color: var(--primary); }
+p.reset a{background-color: var(--backgroundTitle); border-radius: 10px; cursor: not-allowed; color: var(--primary); font-family: 'text'; padding: 10px 30px;}
+p.reset a:hover{ color: var(--text1); background-color: var(--primary); border: 2px solid var(--backgroundTitle); }
+
+/* ---   Content table   --- */
+div.roadmap, div.workings, div.products, div.messages{display: flex; flex-direction: column; padding: 10px;}
+div.roadmap div.nav-content, div.products div.nav-content{ display: flex; align-items: center; justify-content: space-around; }
+div.roadmap h1, div.products h1, div.messages h1 {margin: 0 0 10px 0;}
+.lines:nth-child(even){background-color: var(--primary);}
+div.roadmap div.work p, div.workings div.work p, div.products div.work p{display: flex; width: 10%; text-align: center; border: 2px solid var(--border); padding: 0; justify-content: center; align-items: center;}
+div.caption p, div.workings div.work p, div.products div.work p{padding: 10px 0;}
+.lines, .caption{ display: flex; flex-direction: row; width: 100%; justify-content: space-around; border-top: 2px solid var(--border); }
+.lines .para:last-of-type, .caption .para:last-of-type{ border-right: 2px solid var(--border); }
+.lines:last-of-type{ border-bottom: 2px solid var(--border); }
+.lines .para, .caption .para{ display: flex; border-left: 2px solid var(--border); width: 100%; align-items: center; justify-content: center; padding: 5px 10px; }
+.lines .little, .caption .little{ width: 25%; }
+.caption .para{ font-weight: bold; letter-spacing: 2px; border-bottom: 4px solid var(--backgroundTitle); background-color: var(--textLight); }
+
+/* ---   Card   ---*/
+div.card{ display: grid; grid-template-rows: repeat(3, fit-content); justify-content: center; align-items: center; margin: 10px; border: 2px solid var(--border); }
+div.card div.card-info p{ padding: 5px; }
+div.factory div.card div.card-info p, div.station div.card div.card-info p{ padding: 5px; text-align: center;}
+div.card div.card-info p .mail{ background-color: var(--backgroundTitle); padding: 5px 10px; border-radius: 10px; }
+div.card div.card-info p .mail:hover{ background-color: var(--primary); color: var(--text2); }
+div.card div.card-links{ display: flex; flex-direction: row; justify-content: space-around; margin: 15px 0; }
+
+/* ---   Daytime   --- */
+div.start-day, div.factory-day, div.change-day, div.gasoil-day{ display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px; border-bottom: 2px solid var(--text); }
+div.start-day p, div.factory-day p, div.change-day p, div.gasoil-day p{ padding: 10px; }
+div.start-day div.info, div.change-day div.info, div.start-day div.report{ display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; }
+div.factory-day div.info{ display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; }
+div.gasoil-day div.info{ display: grid; grid-template-columns: repeat(2, 1fr); align-items: center; }
+div.start-day div.info p, div.factory-day div.info p, div.change-day div.info p, div.gasoil-day div.info p{ text-align: center; padding: 5px 15px; border: 2px solid var(--primary); margin: 5px; }
+div.start-day div.links, div.factory-day div.links, div.change-day div.links, div.gasoil-day div.links{ display: flex; flex-direction: row; }
+div.start-day div.links p, div.factory-day div.links p, div.change-day div.links p, div.gasoil-day div.links p{ padding: 5px 20px; }
+div.start-day div.report p{ text-align: center; padding: 5px 15px; border: 2px solid #171266; margin: 5px; }
+
+/* ---   ADR   --- */
+div.identi-adr{ display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 10px; border: 2px solid var(--secondary);  }
+div.identi-adr div.panel{ display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; padding: 20px; }
+div.identi-adr div.panel div.panel-adr{ display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 10px 0 10px; border: 3px solid black; border-radius: 10px; background-color: var(--primary); }
+div.identi-adr div.panel div.panel-adr p{ padding: 5px 25px; font-family: 'lcd'; font-size: 23pt; text-align: center; font-weight: lighter; }
+div.identi-adr div.panel div.panel-labels img{ width: 100px; }
+div.identi-adr div.product{ display: flex; flex-direction: row; padding: 10px; }
+div.identi-adr div.info{ display: flex; flex-direction: column; padding: 10px; }
+div.identi-adr div.links{ display: flex; flex-direction: row; gap: 20px; padding: 10px; }

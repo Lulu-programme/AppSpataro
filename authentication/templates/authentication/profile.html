@@ -15,12 +15,193 @@
 </ul>
 {% endif %}
 
-<!--     -----     Les administrateurs     -----     -->
+<!-- -----     Les administrateurs     ----- -->
 {% if request.user.is_staff %}
-<h1>Welcome {{ name_user }}</h1>
+<!-- -----   Les boutons   ----- -->
+<div class="main-tab">
+    <button class="btn-main active"><img src="{% static 'images/icons/documents.png' %}" class="icon phone">
+            <span class="laptop-tablet">Feuilles</span></button>
+    <button class="btn-main"><img src="{% static 'images/icons/driver.png' %}" class="icon phone">
+            <span class="laptop-tablet">Chauffeurs</span></button>
+    <button class="btn-main"><img src="{% static 'images/icons/truck.png' %}" class="icon phone">
+            <span class="laptop-tablet">Camions</span></button>
+    <button class="btn-main"><img src="{% static 'images/icons/deleted.png' %}" class="icon phone">
+            <span class="laptop-tablet">Supprimés</span></button>
+    <button class="btn-main"><img src="{% static 'images/icons/resume.png' %}" class="icon phone">
+            <span class="laptop-tablet">Récaps</span></button>
+</div>
+<!-- -----   Les feuilles   ----- -->
+<div class="main-content" style="display: flex;">
+    <h1>Les feuilles</h1>
+</div>
+<!-- ------   Les chauffeurs   ----- -->
+<div class="main-content">
+    <div class="driver">
+        {% for driver in drivers %}
+        {% if not driver.is_superuser %}
+        <div class="card">
+            <div class="card-name">
+                <h2>{{ driver.get_full_name }}</h2>
+                <h3>{{ driver.sector }}</h3>
+            </div>
+            <div class="card-info">
+                {% if not driver.is_staff %}
+                {% if driver.drive_license %}
+                <p>
+                    Permis de conduire : {{ driver.drive_license}}
+                </p>{% endif %}
+                {% if driver.adr_license %}
+                <p>
+                    Permis ADR : {{ driver.adr_license}}
+                </p>{% endif %}
+                {% if driver.card_drive %}
+                <p>
+                    Carte tachygraphe : {{ driver.card_drive}}
+                </p>{% endif %}{% endif %}
+                {% if driver.phone %}<p>Téléphone : {{ driver.phone }}</p>{% endif %}
+                {% if driver.email %}<p>Email : <a class='mail' href="mailto:{{ driver.email }}">{{ driver.email }}</a></p>{% endif %}
+                {% if driver.city %}<p>Ville : {{ driver.city }}</p>{% endif %}
+            </div>
+            <div class="card-links">
+                <p class="modify"><a href="#">
+                    <img src="{% static 'images/icons/modify.png' %}" class="icon"></a></p>
+                <p class="delete"><a href="#">
+                    <img src="{% static 'images/icons/delete.png' %}" class="icon"></a></p>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!-- ------   Les camions   ----- -->
+<div class="main-content">
+    <div class="truck">
+        {% for truck in trucks %}
+        <div class="card">
+            <div class="card-name">
+                <h2>{{ truck.license }}</h2>
+                <h3>{{ truck.weight }} Kg</h3>
+            </div>
+            <div class="card-info">
+                <p>
+                    Contrôle technique : {% if truck.technical %}{{ truck.technical }}{% else %}Pas encore de date{% endif %}
+                </p>
+                <p>
+                    Contrôle tachygraphe : {% if truck.tachograph %}{{ truck.tachograph }}{% else %}Pas encore de date{% endif %}
+                </p>
+                <p>
+                    Contrôle ADR : {% if truck.adr %}{{ truck.adr }}{% else %}Pas encore de date{% endif %}
+                </p>
+                <p>
+                    Entretient : {% if truck.maintenance %}{{ truck.maintenance }}{% else %}Pas encore de date{% endif %}
+                </p>
+            </div>
+            <div class="card-links">
+                <p class="modify"><a href="#">
+                    <img src="{% static 'images/icons/modify.png' %}" class="icon"></a></p>
+                <p class="delete"><a href="#">
+                    <img src="{% static 'images/icons/delete.png' %}" class="icon"></a></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- ------   Les supprimés   ----- -->
+<div class="main-content">
+    <h1>Les supprimés</h1>
+</div>
+<!-- ------   Les graphiques   ----- -->
+<div class="main-content">
+    <h1>Récapitulation</h1>
+</div>
 <!--     -----     Les chauffeurs     -----     -->
 {% else %}
+<!-- -----   Les boutons   ----- -->
+<div class="main-tab">
+    <button class="btn-main"><img src="{% static 'images/icons/documents.png' %}" class="icon phone">
+            <span class="laptop-tablet">Feuilles</span></button>
+    <button class="btn-main active"><img src="{% static 'images/icons/infos.png' %}" class="icon phone">
+            <span class="laptop-tablet">Infos</span></button>
+    <button class="btn-main"><img src="{% static 'images/icons/resume.png' %}" class="icon phone">
+            <span class="laptop-tablet">Récaps</span></button>
+</div>
 
+<!-- ------   Les feuilles   ----- -->
+<div class="main-content">
+    <h1>Feuilles</h1>
+</div>
+<!-- ------   Les informations   ----- -->
+<div class="main-content" style="display: flex;">
+    <div class="truck">
+        <div class="card">
+            <p class="icon-card"><img src="{% static 'images/icons/driver.png' %}" class="icon phone"></p>
+            <div class="card-name">
+                <h2>{{ request.user.get_full_name }}</h2>
+                <h3>{{ request.user.sector }}</h3>
+            </div>
+            <div class="card-info">
+                <p>
+                    {% if request.user.drive_license %}
+                    Permis de conduire : {{ request.user.drive_license}}
+                    {% else %}
+                    Pas de permis de conduire
+                    {% endif %}
+                    <a href="{% url 'change-date' 'drive_license' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+
+                <p>
+                    {% if request.user.adr_license %}
+                    Permis ADR : {{ request.user.adr_license}}
+                    {% else %}
+                    Pas de permis ADR
+                    {% endif %}
+                    <a href="{% url 'change-date' 'adr_license' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+
+                <p>
+                    {% if request.user.driver_card %}
+                    Carte tachygraphe : {{ request.user.driver_card}}
+                    {% else %}
+                    Pas de carte tachygraphe
+                    {% endif %}
+                    <a href="{% url 'change-date' 'driver_card' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+                {% if request.user.phone %}<p>Téléphone : {{ request.user.phone }}</p>{% endif %}
+                {% if request.user.email %}<p>Email : <a class='mail' href="mailto:{{ request.user.email }}">{{ request.user.email }}</a></p>{% endif %}
+                {% if request.user.city %}<p>Ville : {{ request.user.city }}</p>{% endif %}
+            </div>
+        </div>
+        <div class="card">
+            <p class="icon-card"><img src="{% static 'images/icons/truck.png' %}" class="icon phone"></p>
+            <div class="card-name">
+                <h2>{{ truck_user.license }}</h2>
+                <h3>{{ truck_user.weight }} Kg</h3>
+            </div>
+            <div class="card-info">
+                <p>
+                    Contrôle technique : {% if truck_user.technical %}{{ truck_user.technical }}{% else %}Pas encore de date{% endif %}
+                    <a href="{% url 'change-date' 'technical' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+                <p>
+                    Contrôle tachygraphe : {% if truck_user.tachograph %}{{ truck_user.tachograph }}{% else %}Pas encore de date{% endif %}
+                    <a href="{% url 'change-date' 'tachograph' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+                <p>
+                    Contrôle ADR : {% if truck_user.adr %}{{ truck_user.adr }}{% else %}Pas encore de date{% endif %}
+                    <a href="{% url 'change-date' 'adr' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+                <p>
+                    Entretient : {% if truck_user.maintenance %}{{ truck_user.maintenance }}{% else %}Pas encore de date{% endif %}
+                    <a href="{% url 'change-date' 'maintenance' %}"><img src="{% static 'images/icons/modify.png' %}" class="icon"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ------   Les graphiques   ----- -->
+<div class="main-content">
+    <h1>Récaps</h1>
+</div>
 {% endif %}
 <script src="{% static 'js/script.js' %}"></script>
 <script>

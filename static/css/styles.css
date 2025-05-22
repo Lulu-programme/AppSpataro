@@ -54,7 +54,7 @@ div.links-list a span:hover, div.btn-add a span:hover { background-color: var(--
 .close-btn { position: absolute; top: 5px; right: 10px; background: none; border: none; font-size: 25px; cursor: not-allowed; color: inherit; }
 
 /* ---   Table   --- */
-div.main-tab{ display: flex; flex-direction: row; gap: 20px; background-color: var(--backgroundTitle); }
+div.main-tab{ display: flex; flex-direction: row; gap: 20px; background-color: var(--backgroundTitle); border-radius: 10px; padding: 0 10px; }
 div.main-tab .btn-main{ border: none; background-color: var(--backgroundTitle); padding: 20px 20px; }
 div.main-tab .btn-main span{ color: var(--primary); }
 div.main-tab .active{ background-color: var(--primary); }
@@ -64,9 +64,6 @@ div.main-tab .active span{ color: var(--text1); }
 div.main-content{display: none; flex-direction: column;}
 div.driver, div.truck, div.factory, div.station{ display: grid; grid-template-columns: repeat(4, 1fr); }
 div.adr{ display: grid; grid-template-columns: repeat(2, 1fr); }
-div.pagination{ width: 100%; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 10px; }
-div.pagination a, div.pagination span{ padding: 10px;}
-div.pagination a{ background-color: var(--primary); border-radius: 10px; }
 div.deleted{ display: flex; flex-direction: column; }
 
 /* ---   Forms   --- */
@@ -113,7 +110,8 @@ div.caption p, div.workings div.work p, div.products div.work p{padding: 10px 0;
 .caption .para{ font-weight: bold; letter-spacing: 2px; border-bottom: 4px solid var(--backgroundTitle); background-color: var(--textLight); }
 
 /* ---   Card   ---*/
-div.card{ display: grid; grid-template-rows: repeat(3, fit-content); justify-content: center; align-items: center; margin: 10px; border: 2px solid var(--border); }
+div.card{ display: grid; grid-template-rows: repeat(auto-fill, 1fr); justify-content: center; align-items: center; padding: 10px; margin: 10px; border: 2px solid var(--border); border-radius: 10px; }
+p.icon-card{ text-align: center; padding: 10px; background-color: var(--primary); border-radius: 10px; width: fit-content; margin: 0 auto; border: 2px solid var(--border); }
 div.card div.card-info p{ padding: 5px; }
 div.factory div.card div.card-info p, div.station div.card div.card-info p{ padding: 5px; text-align: center;}
 div.card div.card-info p .mail{ background-color: var(--backgroundTitle); padding: 5px 10px; border-radius: 10px; }
@@ -121,7 +119,7 @@ div.card div.card-info p .mail:hover{ background-color: var(--primary); color: v
 div.card div.card-links{ display: flex; flex-direction: row; justify-content: space-around; margin: 15px 0; }
 
 /* ---   Daytime   --- */
-div.start-day, div.factory-day, div.change-day, div.gasoil-day{ display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px; border-bottom: 2px solid var(--text); }
+div.start-day, div.factory-day, div.change-day, div.gasoil-day{ display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px; border-bottom: 2px solid var(--text1); }
 div.start-day p, div.factory-day p, div.change-day p, div.gasoil-day p{ padding: 10px; }
 div.start-day div.info, div.change-day div.info, div.start-day div.report{ display: grid; grid-template-columns: repeat(3, 1fr); align-items: center; }
 div.factory-day div.info{ display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; }

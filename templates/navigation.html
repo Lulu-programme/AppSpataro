@@ -6,7 +6,13 @@
         </div>
         <div class="name-user">
             <p><a href="{% url 'profile' %}"><img src="{% static 'images/icons/account.png' %}" class="icon">
-                <span class="laptop-tablet">{{ name_user }}</span></a></p>
+                <span class="laptop-tablet">
+                    {% if request.user.is_superuser %}
+                        Fantôme As
+                    {% else %}
+                        {{ request.user.first_name }}
+                    {% endif %}
+                </span></a></p>
         </div>
         <div class="button">
                 <a href="{% url 'logout' %}" class="action-button"><img src="{% static 'images/icons/logout.png' %}" class="tablet-phone icon">
@@ -17,7 +23,7 @@
         {% if request.user.is_staff or request.user.is_superuser %}
             <a href="{% url 'truck' %}" class="staff"><img src="{% static 'images/icons/add_truck.png' %}" class="icon phone">
             <span class="laptop-tablet">Ajouter un camion</span></a>
-            <a href="#" class="staff"><img src="{% static 'images/icons/add_driver.png' %}" class="icon phone">
+            <a href="{% url 'signup' %}" class="staff"><img src="{% static 'images/icons/add_driver.png' %}" class="icon phone">
             <span class="laptop-tablet">Ajouter un chauffeur</span></a>
             <a href="#" class="staff"><img src="{% static 'images/icons/factory.png' %}" class="icon phone">
             <span class="laptop-tablet">Client</span></a>

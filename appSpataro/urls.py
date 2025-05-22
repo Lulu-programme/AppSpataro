@@ -28,6 +28,8 @@ urlpatterns = [
     path('login/', authentication.views.login_page, name='login'),
     path('logout/', authentication.views.logout_user, name='logout'),
     path('truck/', authentication.views.add_truck, name='truck'),
+    path('signup/', authentication.views.signup_page, name='signup'),
+    path('change-date/<str:to_modify>/', authentication.views.change_date, name='change-date')
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="nav-content">
+    <a href="{% url 'profile' %}"><img src="{% static 'images/icons/return.png' %}" class="icon"></a>
+    <h1>{{ title }}</h1>
+</div>
+
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        <li class="message {{ message.tags }}">
+            {{ message }}
+            <!-- Bouton de fermeture -->
+            <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form action="{% url 'signup' %}" method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Nom utilisateur</legend>
+        <input type='text' name='username' id='username' required>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Mot de passe</legend>
+        <input type='password' name='password1' id='password1' required>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Confirmer mot de passe</legend>
+        <input type='password' name='password2' id='password2' required>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Prénom</legend>
+        <input type='text' name='first_name' id='first_name' required>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Nom</legend>
+        <input type='text' name='last_name' id='last_name' required>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Secteur</legend>
+        {% for sector in sectors %}
+        <div>
+            <input type="radio" id="sector" name="sector" value="{{ sector }}" {% if sector == "Administration" %}checked{% endif%} required />
+            <label for="sector">{{ sector }}</label>
+        </div>
+        {% endfor %}
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Camion</legend>
+        <div>
+            <input type="radio" id="truck" name="truck" value="0"/>
+            <label for="truck">Pas de camion</label>
+        </div>
+        {% for truck in trucks %}
+        <div>
+            <input type="radio" id="truck" name="truck" value="{{ truck.license }}"/>
+            <label for="truck">{{ truck.license }}</label>
+        </div>
+        {% endfor %}
+    </fieldset>
+    <fieldset>
+        <legend>Permis de conduire</legend>
+        <input type='date' name='drive_license' id='drive_license'>
+    </fieldset>
+    <fieldset>
+        <legend>Permis ADR</legend>
+        <input type='date' name='adr_license' id='adr_license'>
+    </fieldset>
+    <fieldset>
+        <legend>Carte chauffeur</legend>
+        <input type='date' name='card_drive' id='card_drive'>
+    </fieldset>
+    <fieldset>
+        <legend>Email</legend>
+        <input type='email' name='email' id='email'>
+    </fieldset>
+    <fieldset>
+        <legend>Téléphone</legend>
+        <input type="text" name="phone" inputmode="tel" pattern="[0-9]+">
+    </fieldset>
+    <fieldset>
+        <legend>Lieux de résidence</legend>
+        <input type='text' name='city' id='city' required>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <fieldset>
+        <legend>Administrateur</legend>
+        <div>
+            <input type="radio" id="is_staff" name="is_staff" value="0" checked/>
+            <label for="is_staff">Non</label>
+        </div>
+        <div>
+            <input type="radio" id="is_staff" name="is_staff" value="1"/>
+            <label for="is_staff">Oui</label>
+        </div>
+        <p class='required'>OBLIGATOIRE</p>
+    </fieldset>
+    <p class="submitted"><input type="submit" value="Inscription"></p>
+</form>
+
+{% endblock content %}

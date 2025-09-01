@@ -1,1 +1,16 @@
-* text=auto eol=lf
+# Normalisation des fins de ligne
+* text=auto
+
+# Scripts
+*.sh text eol=lf
+
+# Images & binaires
+*.png binary
+*.jpg binary
+*.pdf binary
+
+# Markdown et documentation
+*.md text diff=markdown
+
+# Code Python
+*.py text diff=python

@@ -1,0 +1,44 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.log
+
+
+# --- Environnements & secrets ---
+.venv/
+.env
+.env.*
+
+
+# --- Django ---
+db.sqlite3
+staticfiles/
+media/
+# (⚠️ NE PAS ignorer les dossiers migrations/ : on les versionne)
+
+
+# --- Node/Tailwind ---
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.pnp.*
+dist/
+build/
+
+
+# --- IDE/OS ---
+.idea/
+.vscode/
+.DS_Store
+
+
+# --- Tests/Coverage ---
+htmlcov/
+.coverage*
+*.cover
+coverage.xml
